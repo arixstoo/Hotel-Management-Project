@@ -6,7 +6,6 @@ public class Reservation {
     //private Date dateDebut;
     //private Date dateFin;
     private float total;
-    private int hoho;
 
     // ...
 

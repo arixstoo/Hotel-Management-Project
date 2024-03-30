@@ -2,15 +2,15 @@ public class Hotel {
     
     private static String name;
     private static String adresse;
-    //things that has in it and the things u can do au alentours
-    //we can do them f display direct and I need constructeur directement fih efayesna
-    
 
+    //constructeur nestaemloh une fois ou khlas l'hotel rah ykon wahed ou yoqoed daymen le même balak même naho
+    // le constructeur et même les attributs on laisse que la fonction comme static
     public Hotel(String name, String adresse){
         this.name=name;
         this.adresse=adresse;
     }
     
+    //On l'affiche quand l'utilisateur dakhel l'app veut savoir plus sur l'hotel un bouton qui affiche tout ça
     public static void afficher(){
         System.out.println("L'Hôtel "+Hotel.name+" : Votre havre de paix au milieu de la ville\r\n" + //
                         "\r\n" + //

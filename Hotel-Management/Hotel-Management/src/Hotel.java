@@ -6,8 +6,8 @@ public class Hotel {
     //constructeur nestaemloh une fois ou khlas l'hotel rah ykon wahed ou yoqoed daymen le même balak même naho
     // le constructeur et même les attributs on laisse que la fonction comme static
     public Hotel(String name, String adresse){
-        this.name=name;
-        this.adresse=adresse;
+        Hotel.name=name;
+        Hotel.adresse=adresse;
     }
     
     //On l'affiche quand l'utilisateur dakhel l'app veut savoir plus sur l'hotel un bouton qui affiche tout ça

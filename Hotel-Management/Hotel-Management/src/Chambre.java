@@ -5,8 +5,6 @@ public class Chambre {
     private boolean status;
     private float prix;
 
-    // ...
-
 }
 enum TypeChambre {
     Individuel,

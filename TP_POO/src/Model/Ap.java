@@ -43,4 +43,22 @@ public class MongoFunctions {
             System.out.println("\nLa collection est vide");
         }
     }
+    public static void dropDoc(MongoCollection collection, String code, Object value) {
+        Document search = new Document();
+        search.put(code, value);
+
+        // Supprimer un ou plusieurs documents
+        DeleteResult deleteResult = collection.deleteMany(search);
+        long deletedCount = deleteResult.getDeletedCount();
+
+        if (deletedCount > 0) {
+            if (deletedCount == 1) {
+                System.out.println(deletedCount + " Document supprimé avec succès ");
+            } else {
+                System.out.println(deletedCount + " Documents supprimés avec succès ");
+            }
+        } else {
+            System.out.println("Aucun document trouvé correspondant à la condition.");
+        }
+    }
 }

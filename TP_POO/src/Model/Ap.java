@@ -30,4 +30,17 @@ public class MongoFunctions {
         collection.insertOne(document);
         System.out.println("Document inserted successfully!");
     }
+    public static void ListDocs(MongoCollection collection) {
+        long compteur = collection.countDocuments();
+        if (compteur != 0) {
+            // Lister les documents
+            System.out.println(collection +":");
+            for (Object document : collection.find()) {
+                System.out.println(document.toString());
+            }
+            System.out.println("\nNombre de documents dans la collection: " + collection.getNamespace() + " : " + compteur);
+        } else {
+            System.out.println("\nLa collection est vide");
+        }
+    }
 }

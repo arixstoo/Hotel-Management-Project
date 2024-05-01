@@ -28,7 +28,7 @@ public class MongoFunctions {
 
     public static void insertDoc(MongoCollection collection, Document document) {
         collection.insertOne(document);
-        System.out.println("Document inserted successfully!");
+        System.out.println("Document inseré avec succés!");
     }
     public static void ListDocs(MongoCollection collection) {
         long compteur = collection.countDocuments();

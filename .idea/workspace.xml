@@ -4,7 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f7f32a7-3acf-4db5-bcca-cdb866a97000" name="Changes" comment="" />
+    <list default="true" id="7f7f32a7-3acf-4db5-bcca-cdb866a97000" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_05_01_2024_17_29_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_05_01_2024_17_29__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_02_2024_22_14_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_02_2024_22_14__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP_POO/src/Controller/Chambre.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP_POO/src/Controller/Hotel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP_POO/src/Controller/Reservation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP_POO/src/Controller/TypeChambre.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP_POO/src/Vue/Admin_Login.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP_POO/src/Vue/Client_Signup.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP_POO/src/Vue/img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP_POO/TP_POO_HOTEL.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TP_POO/TP_POO_HOTEL.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP_POO/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/TP_POO/src/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP_POO/src/Controller/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/TP_POO/src/Controller/Date.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP_POO/src/Model/MongoDocToJavaAttribut.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP_POO/src/Model/MongoFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/TP_POO/src/Model/MongoFunctions.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +60,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Merging main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/saidi/OneDrive/Bureau/GitHub/TP_POO",
     "node.js.detected.package.eslint": "true",
@@ -78,19 +96,6 @@
       <option name="USE_OPTIONS" value="false" />
       <option name="OPTIONS" value="" />
       <method v="2" />
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="GitHub" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="GitHub" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="GitHub" />
@@ -213,6 +218,19 @@
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="GitHub" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="GitHub" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
   </component>
   <component name="SharedIndexes">

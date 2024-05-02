@@ -1,6 +1,6 @@
-package Mongo;
+package Model;
 
-import Code.*;
+import Controller.*;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoClients;

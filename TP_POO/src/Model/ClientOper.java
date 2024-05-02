@@ -51,22 +51,3 @@ public class ClientOper {
             System.out.println("Aucun client trouvé.");
         }
     }
-
-     // modifier client
-     public static void updateClient(Object valeur_rech, String field_modif, Object valeur_mod) {
-         MongoCollection collection = MongoFunctions.mongconnect("TP_Hotel", "Clients");
-
-         // Recherche du document correspondant
-         Document recherche = new Document("UserName", valeur_rech);
-         long cmp = collection.countDocuments(recherche);
-
-         if (cmp > 0) {
-             // Mise à jour du document trouvé
-             collection.updateOne(recherche, Updates.set(field_modif, valeur_mod));
-             System.out.println("Client modifié avec succès");
-         } else {
-             // Aucun document trouvé correspondant à la valeur de recherche
-             System.out.println("Aucun client trouvé avec le nom d'utilisateur  : " + valeur_rech);
-         }
-     }
-

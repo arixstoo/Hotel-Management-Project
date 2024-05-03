@@ -166,6 +166,21 @@ public class Date {
         }
         return new Date(anneeNouveau, moisNouveau, jourNouveau);
     }
+
+    // Fonction pour convertir la date en chaîne de caractères
+    public static String dateVersString(Date datee) {
+        return datee.jour + "/" + datee.mois + "/" + datee.annee;
+    }
+
+    // Fonction pour convertir une chaîne de caractères en date
+    public static Date stringVersDate(String dateEnString) /*throws ParseException*/ {
+        String[] parties = dateEnString.split("/");
+        int jour = Integer.parseInt(parties[0]);
+        int mois = Integer.parseInt(parties[1]);
+        int annee = Integer.parseInt(parties[2]);
+        return new Date(jour, mois, annee);
+    }
+
     public void afficherDate(Date date){
         System.out.print(date.jour+"/"+date.mois+"/"+date.annee);
     }

@@ -49,7 +49,6 @@ class Admin_Login extends JFrame {
         backgroundLabel.setLayout(new GridBagLayout());
 
         // Create the blue panel in the center
-        // Create the blue panel in the center
         JPanel mainPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {

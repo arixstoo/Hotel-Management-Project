@@ -14,8 +14,7 @@ import java.util.*;
 
 public class ClientOper {
 
-     // inserer un client
-    public static void insertClient(String nom_client, String prenom_client, String e_mail, String telephone, String userName, String motDePasse) {
+    /* inserer un client */ public static void insertClient(String nom_client, String prenom_client, String e_mail, String telephone, String userName, String motDePasse) {
 
         MongoCollection collection = MongoFunctions.mongconnect("TP_Hotel","Clients");
 
@@ -31,8 +30,7 @@ public class ClientOper {
         System.out.println("Client ajouté avec succés");
     }
 
-     // supprimer un client
-    public static void suppClient(Object value) {
+    /* supprimer un client */ public static void suppClient(Object value) {
 
         MongoCollection collection = MongoFunctions.mongconnect("TP_Hotel","Clients");
         Document rec = new Document();

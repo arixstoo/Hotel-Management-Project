@@ -25,11 +25,11 @@ public class MongoFunctions {
         MongoCollection collection = mongoDatabase.getCollection(collName);
         return collection;
     }
-    public static void insertDoc(MongoCollection collection, Document document) {
+    /*inserer un document */ public static void insertDoc(MongoCollection collection, Document document) {
         collection.insertOne(document);
         System.out.println("Document inseré avec succés!");
     }
-    public static void ListDocs(MongoCollection collection) {
+    /*lister les documents d'une collection */ public static void ListDocs(MongoCollection collection) {
         long compteur = collection.countDocuments();
         if (compteur != 0) {
             // Lister les documents
@@ -42,7 +42,7 @@ public class MongoFunctions {
             System.out.println("\nLa collection est vide");
         }
     }
-    public static void suppDoc(MongoCollection collection, String code, Object value) {
+    /*supprimer un document */ public static void suppDoc(MongoCollection collection, String code, Object value) {
         Document search = new Document();
         search.put(code, value);
 
@@ -60,7 +60,7 @@ public class MongoFunctions {
             System.out.println("Aucun document trouvé correspondant à la condition.");
         }
     }
-    public static void updateDoc(MongoCollection collectionName, String field_recherche, Object valeur_or, String field_modif, Object valeur_mod) {
+    /*modifier un document */ public static void updateDoc(MongoCollection collectionName, String field_recherche, Object valeur_or, String field_modif, Object valeur_mod) {
         collectionName.updateOne(Filters.eq(field_recherche, valeur_or), Updates.set(field_modif, valeur_mod));
         System.out.println("document modifié successfully");
     }

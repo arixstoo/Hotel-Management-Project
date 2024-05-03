@@ -1,4 +1,4 @@
-package GUI;
+package Vue;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,7 +6,6 @@ import javax.swing.border.AbstractBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//give the logiin button some raduis
 
 class RoundedBorder extends AbstractBorder {
     private int radius;
@@ -43,6 +42,7 @@ class Admin_Login extends JFrame {
         setLocationRelativeTo(null);
         setUndecorated(true); // Remove frame decoration
 
+
         // Create the background panel
         ImageIcon backgroundImage = new ImageIcon("img.png");
         JLabel backgroundLabel = new JLabel(backgroundImage);
@@ -53,14 +53,15 @@ class Admin_Login extends JFrame {
         JPanel mainPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
-                    super.paintComponent(g);
-                    Graphics2D g2d = (Graphics2D) g.create();
-
-                    g2d.setColor(new Color(4, 19, 78, 180)); // Translucent blue
-                    g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 5, 5); // More rounded corners
-                }
-
-                mainPanel.setLayout(new GridBagLayout());
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2d.setColor(new Color(4, 19, 78, 180)); // Translucent blue
+                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 10, 10); // More rounded corners
+                g2d.dispose();
+            }
+        };
+        mainPanel.setLayout(new GridBagLayout());
         mainPanel.setPreferredSize(new Dimension(300, 150));
 
 // Add this line to make the panel transparent
@@ -134,3 +135,4 @@ class Admin_Login extends JFrame {
             }
         });
     }
+}}

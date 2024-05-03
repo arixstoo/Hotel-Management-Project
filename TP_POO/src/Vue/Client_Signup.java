@@ -14,7 +14,7 @@ class Client_Signup extends JFrame {
         setLocationRelativeTo(null);
 
         // Create the background panel
-        ImageIcon backgroundImage = new ImageIcon("image5.png");
+        ImageIcon backgroundImage = new ImageIcon("imagee.png");
         JLabel backgroundLabel = new JLabel(backgroundImage);
         backgroundLabel.setLayout(new GridBagLayout());
 
@@ -29,7 +29,7 @@ class Client_Signup extends JFrame {
                 Graphics2D g2d = (Graphics2D) g.create();
 
                 g2d.setColor(new Color(4, 19, 78, 180)); // Translucent blue
-                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 5, 5); // More rounded corners
+                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 10, 10); // More rounded corners
             }
 
 
@@ -97,7 +97,7 @@ class Client_Signup extends JFrame {
 
         gbc.gridx = 0;
         gbc.gridy = 5;
-        JLabel phoneLabel = new JLabel("Phone (optional):");
+        JLabel phoneLabel = new JLabel("Phone:");
         phoneLabel.setForeground(Color.WHITE);
         mainPanel.add(phoneLabel, gbc);
 
@@ -108,7 +108,7 @@ class Client_Signup extends JFrame {
         // Password field
         gbc.gridx = 0;
         gbc.gridy = 6;
-        JLabel passwordLabel = new JLabel("Mot de passe :");
+        JLabel passwordLabel = new JLabel("Password :");
         passwordLabel.setForeground(Color.WHITE);
         mainPanel.add(passwordLabel, gbc);
 
@@ -137,26 +137,6 @@ class Client_Signup extends JFrame {
         });
         mainPanel.add(submitButton, gbc);
 
-// Log In button
-        gbc.gridx = 0;
-        gbc.insets = new Insets(10, 10, 10, 10);
-        JButton loginButton = new JButton("Log In");
-        gbc.anchor = GridBagConstraints.EAST;
-        loginButton.setBackground(new Color(44, 84, 160,250)); // Deep blue color
-        loginButton.setForeground(Color.WHITE);
-        loginButton.setFont(new Font("Arial", Font.BOLD, 14)); // Larger and bold font
-        loginButton.setPreferredSize(new Dimension(80, 21)); // Smaller size
-        loginButton.setFocusPainted(false); // Remove focus border
-        //loginButton.setBorder(new RoundedBorder(borderRadius));
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Code to handle login button click
-            }
-        });
-        mainPanel.add(loginButton, gbc);
-
-
         // Add the blue panel to the center of the background panel
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -181,4 +161,3 @@ class Client_Signup extends JFrame {
         });
     }
 }
-

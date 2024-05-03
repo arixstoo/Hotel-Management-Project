@@ -16,7 +16,7 @@ import org.bson.types.ObjectId;
 import java.util.*;
 
 public class MongoFunctions {
-    public static MongoCollection<Document> mongconnect(String dbName, String collName) {
+    /* connexion a la base de donnees */ public static MongoCollection<Document> mongconnect(String dbName, String collName) {
         String uri = "mongodb+srv://nassimhessas60:nassimhessas60@cluster0.3ye673x.mongodb.net/";
         MongoClientURI clientURI = new MongoClientURI(uri);
         MongoClient mongoClient = new MongoClient(clientURI);

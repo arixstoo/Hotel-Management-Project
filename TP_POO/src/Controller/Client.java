@@ -34,5 +34,63 @@ public class Client extends Personne {
         this.username=username;
         this.motDePasse=motDePasse;
     }
+    //SIGN UP
+    public static Boolean ClientSignUp(String nom, String prenom, String email, String telephone, String username, String motDePasse) throws Exception_text{
+        Boolean validé = false;
+
+        if(nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || telephone.isEmpty() || username.isEmpty() || motDePasse.isEmpty()){
+            throw new Exception_text("Les informations ne sont pas complètes.");
+        }
+
+        //verifier l'email
+        if(!isValidEmail(email)) {
+            throw new Exception_text("L'adresse email est invalide (ça doit contenir @).");
+        }
+
+        if (!telephone.matches("[0-9]+")) {
+            throw new Exception_text("Le numéro de téléphone n'est pas valide.");
+        }
+        //verifier le telephone
+        if(telephone.length() != 10){
+            throw new Exception_text("Le numéro de téléphone est invalide (ça doit contenir 10 caractères).");
+        }
+        else if(!telephone.startsWith("05") && !telephone.startsWith("06") && !telephone.startsWith("07")){
+            throw new Exception_text("Le numéro de téléphone est invalide (ça doit commencé avec 05 , 06 ou bien 07).");
+        }
+
+        //verifier l'unicité du username
+        if(Main.clients.containsKey(username)){
+            throw new Exception_text("Le username est invalide (ce username : "+username+" est déjà utilisé).");
+        }
+
+        //verifier le mot de passe
+        char[] passwordd = motDePasse.toCharArray();
+        new isValidPassword(passwordd);
+        motDePasse = String.valueOf(passwordd);
+
+        //inserer le client dans la map et dans la bdd
+        Client client = new Client(nom, prenom, email, telephone, username, motDePasse);
+        Main.clients.put(username, client);
+        MongoFunctions.insertClient(nom , prenom , email , telephone , username , motDePasse);
+        return validé=true;
+    }
+    static boolean isValidEmail(String email) {
+        return email.contains("@");
+    }
+    public static char[] enterPassword() {
+        return System.console().readPassword();
+    }
+
+
+
+    
+    public void afficher(){
+        System.out.println("\nAffichage de vos infos :");
+        System.out.println("Votre nom : "+this.nom);
+        System.out.println("Votre prénom : "+this.prenom);
+        System.out.println("Votre email : "+this.email);
+        System.out.println("Votre numéro de téléphone : "+this.telephone);
+        System.out.println("Votre username : "+this.username);
+    }
 
 }

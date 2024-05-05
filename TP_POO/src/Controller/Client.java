@@ -81,6 +81,22 @@ public class Client extends Personne {
         return System.console().readPassword();
     }
 
+    //LOGIN
+    public static Boolean Login(String username, String motDePasse) throws Exception_text{
+        Boolean validé=false;
+        if(Main.clients.containsKey(username)){
+            Client temp = Main.clients.get(username);
+            if(Objects.equals(temp.motDePasse, motDePasse)){
+                return validé=true;
+            }
+            else{
+                throw new Exception_text("Mot de passe incorect, réesseyez.");
+            }
+        }
+        else{
+            throw new Exception_text("Nom d'utilisateur incorect, réesseyez.");
+        }
+    }
 
 
     

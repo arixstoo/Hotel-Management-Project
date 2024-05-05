@@ -52,7 +52,7 @@ public class ReservationOper {
 
         if (deletedCount > 0) {
             if (deletedCount == 1) {
-                System.out.println(deletedCount + " Reservation supprimés avec succès ");
+                System.out.println(deletedCount + " Reservation supprimée avec succès ");
             } else {
                 System.out.println(deletedCount + " Reservations supprimées avec succès ");
             }

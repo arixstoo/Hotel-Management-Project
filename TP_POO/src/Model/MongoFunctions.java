@@ -62,6 +62,6 @@ public class MongoFunctions {
     }
     /*modifier un document */ public static void updateDoc(MongoCollection collectionName, String field_recherche, Object valeur_or, String field_modif, Object valeur_mod) {
         collectionName.updateOne(Filters.eq(field_recherche, valeur_or), Updates.set(field_modif, valeur_mod));
-        System.out.println("document modifié successfully");
+        System.out.println("document modifié avec succés");
     }
 }

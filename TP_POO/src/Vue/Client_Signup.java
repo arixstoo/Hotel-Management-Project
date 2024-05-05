@@ -7,14 +7,14 @@ import java.awt.event.ActionListener;
 
 class Client_Signup extends JFrame {
     public Client_Signup() {
-        // Set up the frame
+
         setTitle("Client Signup");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700, 500);
         setLocationRelativeTo(null);
 
-        // Create the background panel
-        ImageIcon backgroundImage = new ImageIcon("imagee.png");
+
+        ImageIcon backgroundImage = new ImageIcon("image22.png");
         JLabel backgroundLabel = new JLabel(backgroundImage);
         backgroundLabel.setLayout(new GridBagLayout());
 
@@ -22,13 +22,12 @@ class Client_Signup extends JFrame {
         backgroundPanel.setBackground(new Color(3, 14, 58));
         backgroundPanel.setLayout(new GridBagLayout());*/
 
-        // Create the blue panel in the center
         JPanel mainPanel = new JPanel() {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g.create();
 
-                g2d.setColor(new Color(4, 19, 78, 180)); // Translucent blue
+                g2d.setColor(new Color(119, 132, 143, 180)); // Translucent blue
                 g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 10, 10); // More rounded corners
             }
 
@@ -40,7 +39,7 @@ class Client_Signup extends JFrame {
             }
         };
 
-// Add this line to make the panel transparent
+
         mainPanel.setOpaque(false);
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -56,6 +55,8 @@ class Client_Signup extends JFrame {
 
         GridBagConstraints gibc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
+
+
 
         // nom field
         gbc.gridx = 0;
@@ -122,7 +123,7 @@ class Client_Signup extends JFrame {
         gbc.gridwidth = 1; // Set gridwidth to 1 for each button
         gbc.anchor = GridBagConstraints.EAST; // Align to the right
         JButton submitButton = new JButton("Submit");
-        submitButton.setBackground(new Color(6, 83, 138)); // Deep blue color
+        submitButton.setBackground(new Color(89, 116, 141)); // Deep blue color
         submitButton.setForeground(Color.WHITE);
         submitButton.setFont(new Font("Arial", Font.BOLD, 14)); // Larger and bold font
         submitButton.setPreferredSize(new Dimension(100, 30)); // Smaller size
@@ -132,12 +133,12 @@ class Client_Signup extends JFrame {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Code to handle submit button click
+
             }
         });
         mainPanel.add(submitButton, gbc);
 
-        // Add the blue panel to the center of the background panel
+
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -147,9 +148,8 @@ class Client_Signup extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
         add(backgroundLabel, BorderLayout.CENTER);
         backgroundLabel.add(mainPanel, gbc);
-        /*backgroundPanel.add(mainPanel, gbc);
 
-        add(backgroundPanel);*/
+
 
     }
 
@@ -161,3 +161,4 @@ class Client_Signup extends JFrame {
         });
     }
 }
+

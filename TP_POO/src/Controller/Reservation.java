@@ -1,18 +1,20 @@
 package Controller;
 
+import Model.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Reservation {
     private static int ID=1;
     private Client client;
-    private ArrayList<Chambre> chambre;
+    private ArrayList<Chambre> chambre = new ArrayList<Chambre>();
     private Date dateDebut;
     private Date dateFin;
-    private float total;
+    private double total;
     private Boolean réservation_confirmée;
 
-    public Reservation(Client client, ArrayList<Chambre> chambre, Date datePooDebut, Date datePooFin, float total){
+    public Reservation(Client client, ArrayList<Chambre> chambre, Date datePooDebut, Date datePooFin, double total){
         this.client = client;
         this.chambre = chambre;
         this.dateDebut = datePooDebut;
@@ -22,15 +24,22 @@ public class Reservation {
         Reservation.ID = Reservation.ID++;
     }
 
-    ////////////////************************************************************************************
-    public Reservation(String username, List<String> reservedRooms, long startDate, long endDate, int totalPrice) {
+    public Reservation(String username, List<Integer> reservedRooms, Date dateDebut, Date dateFin, double totalPrice) {
+        this.client = Main.clients.get(username);
 
+        for(int i=0;i<reservedRooms.size();i++){
+            this.chambre.add(Main.chambres.get(reservedRooms.get(i)));
+        }
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.total = totalPrice;
+        this.réservation_confirmée=false;
     }
 
     public static int getID(){return Reservation.ID;}
 
-    public float getTotal(){return this.total;}
-    public void setTotal(float total){this.total=total;}
+    public double getTotal(){return this.total;}
+    public void setTotal(double total){this.total=total;}
     
     public Client getClient(){return this.client;}
     public void setClient(Client client){this.client=client;}
@@ -39,10 +48,10 @@ public class Reservation {
     public void setChambre(ArrayList<Chambre> chambre){this.chambre=chambre;}
     
     public Date getDateDebut(){return this.dateDebut;}
-    public void setDateDebut(Date datePooDebut){this.dateDebut = datePooDebut;}
+    public void setDateDebut(Date dateDebut){this.dateDebut = dateDebut;}
     
     public Date getDateFin(){return this.dateFin;}
-    public void setDateFin(Date datePooFin){this.dateFin = datePooFin;}
+    public void setDateFin(Date dateFin){this.dateFin = dateFin;}
     
     //pour l'admin
     public Boolean getRéservation_confirmée(){return this.réservation_confirmée;}

@@ -1,25 +1,25 @@
 package Vue;
-import Controller.Chambre;
-import Controller.Exceptions.Exception_text;
+
 import Controller.Main;
-import Controller.Reservation;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import javax.swing.table.*;
 
 public class Access_reservation extends JFrame {
     private DefaultTableModel model;
     public Access_reservation() {
+        Main.charger();
         //here we costumize the frame
         setTitle("Accès réservations");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Image img = tk.getImage("src/Vue/IconHotel.png");
+        setIconImage(img);
         setSize(800, 500);
         setLocationRelativeTo(null);
 
@@ -71,8 +71,8 @@ public class Access_reservation extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Controller.Admin.accepterRéservation(model);
                 dispose();
-                JOptionPane.showMessageDialog(null,"Les réservations sont confirmée avec succès.");
-                Vue.Admin_view secondWindow = new Vue.Admin_view();
+                JOptionPane.showMessageDialog(null,"Les réservations sont confirmées avec succès.");
+                Admin_view secondWindow = new Admin_view();
                 secondWindow.setVisible(true);
             }
         });
@@ -82,7 +82,7 @@ public class Access_reservation extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Controller.Admin.rejeterRéservation(model);
                 dispose();
-                JOptionPane.showMessageDialog(null,"Les réservations sont rejetée avec succès.");
+                JOptionPane.showMessageDialog(null,"Les réservations sont rejetées avec succès.");
                 new Admin_view();
             }
         });

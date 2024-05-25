@@ -1,13 +1,22 @@
 package Vue;
 
+import Controller.Exceptions.Exception_text;
+import Controller.Main;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 class Admin_view extends JFrame {
     public Admin_view() {
-
+        Main.charger();
         setTitle("Vue d'admin");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Image img = tk.getImage("src/Vue/IconHotel.png");
+        setIconImage(img);
         setSize(700, 500);
         setLocationRelativeTo(null);
 
@@ -47,15 +56,10 @@ class Admin_view extends JFrame {
         gbc.insets = new Insets(10, 10, 10, 10);
 
         // Create the background panel
-        ImageIcon backgroundImage = new ImageIcon("img_1.png");
+        ImageIcon backgroundImage = new ImageIcon("src/Vue/img_1.png");
         JLabel backgroundLabel = new JLabel(backgroundImage);
         backgroundLabel.setLayout(new GridBagLayout());
 
-        // Create the blue panel in the center
-
-        // Add text at the beginning and center of the blue panel
-
-       // secondPanel.add(textLabel);
 
         // Create the panel for the buttons
         JPanel buttonsPanel = new JPanel();
@@ -68,9 +72,15 @@ class Admin_view extends JFrame {
         buttonsPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
         // Button 1
-        JButton button1 = new JButton("      Accéder reservations   ");
+        JButton button1 = new JButton("         Ajouter chambre        ");
         button1.setBackground(new Color(186, 149, 89));
         button1.setForeground(Color.WHITE);
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Controller.Admin.ajouterChambre();
+            }
+        });
         button1.setPreferredSize(new Dimension(250, 200)); // Ajuster la taille du bouton
         buttonsPanel.add(button1);
         buttonsPanel.add(Box.createRigidArea(new Dimension(0, 30)));
@@ -79,22 +89,50 @@ class Admin_view extends JFrame {
         JButton button2 = new JButton("        Modifier chambre        ");
         button2.setBackground(new Color(186, 149, 89));
         button2.setForeground(Color.WHITE);
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Controller.Admin.modifierChambre();
+            }
+        });
         button2.setPreferredSize(new Dimension(250, 60)); // Ajuster la taille du bouton
         buttonsPanel.add(button2);
         buttonsPanel.add(Box.createRigidArea(new Dimension(0, 30)));
 
         // Button 3
-        JButton button3 = new JButton("          ajouter chambre        ");
+        JButton button3 = new JButton("      Supprimer chambre      ");
         button3.setBackground(new Color(186, 149, 89));
         button3.setForeground(Color.WHITE);
+        button3.addActionListener(new ActionListener () {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Controller.Admin.supprimerChambre();
+            }
+        });
         button3.setPreferredSize(new Dimension(250, 60)); // Ajuster la taille du bouton
         buttonsPanel.add(button3);
         buttonsPanel.add(Box.createRigidArea(new Dimension(0, 30)));
 
         // Button 4
-        JButton button4 = new JButton("        suprimer chambre       ");
+        JButton button4 = new JButton("      Acceder réservations    ");
         button4.setBackground(new Color(186, 149, 89));
         button4.setForeground(Color.WHITE);
+        button4.addActionListener(new ActionListener () {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<Object[]> data = Controller.Admin.accesRéservation();
+                try{
+                    if(data.isEmpty()){
+                        throw new Exception_text("Aucune réservation non confirmée est trouvée.");
+                    }
+                    dispose();
+                    Access_reservation secondWindow = new Access_reservation();
+                    secondWindow.setVisible(true);
+                } catch(Exception_text ex){
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+            }
+        });
         button4.setPreferredSize(new Dimension(250, 60));
         buttonsPanel.add(button4);
 
@@ -104,13 +142,5 @@ class Admin_view extends JFrame {
 
         backgroundLabel.add(mainPanel, gbc);
         add(backgroundLabel, BorderLayout.CENTER);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new Admin_view().setVisible(true);
-            }
-        });
     }
 }

@@ -1,40 +1,29 @@
 package Controller;
 
-import Model.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Reservation {
-    private static int ID=1;
+    private static int ID=0;
     private Client client;
-    private ArrayList<Chambre> chambre = new ArrayList<Chambre>();
+    private ArrayList<Chambre> chambre = new ArrayList<>();
     private Date dateDebut;
     private Date dateFin;
     private double total;
     private Boolean réservation_confirmée;
 
-    public Reservation(Client client, ArrayList<Chambre> chambre, Date datePooDebut, Date datePooFin, double total){
-        this.client = client;
-        this.chambre = chambre;
-        this.dateDebut = datePooDebut;
-        this.dateFin = datePooFin;
-        this.total = total;
-        this.réservation_confirmée=false;
-        Reservation.ID = Reservation.ID++;
-    }
-
-    public Reservation(String username, List<Integer> reservedRooms, Date dateDebut, Date dateFin, double totalPrice) {
+    public Reservation(String username, List<Integer> reservedRooms, Date dateDebut, Date dateFin, double totalPrice, Boolean réservation__confirmée) {
         this.client = Main.clients.get(username);
-
         for(int i=0;i<reservedRooms.size();i++){
             this.chambre.add(Main.chambres.get(reservedRooms.get(i)));
         }
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.total = totalPrice;
-        this.réservation_confirmée=false;
+        this.réservation_confirmée=réservation__confirmée;
     }
+
+    public Reservation() {}
 
     public static int getID(){return Reservation.ID;}
 
@@ -57,40 +46,4 @@ public class Reservation {
     public Boolean getRéservation_confirmée(){return this.réservation_confirmée;}
     public void setRéservation_confirmée(Boolean bool){this.réservation_confirmée = bool;}
 
-    public void annuler_réservation() {
-        this.client=null;
-        this.chambre=null;
-        this.dateDebut =null;
-        this.dateFin =null;
-    }
-
-    public void afficher(){
-        System.out.println("\nAffichage les infos de votre réservation :");
-        System.out.println("Votre nom comlet : "+this.client.nom+" "+this.client.prenom);
-        System.out.println("Votre numéro de téléphone : "+this.client.telephone);
-        System.out.print("Vos chambre réservée : ");
-        int i=0;
-        do{
-            System.out.print("      "+this.chambre.get(i).numéroChambre+" est de type "+this.chambre.get(i).type);
-            i++;
-        }while(i<this.chambre.size());
-        System.out.print("DatePoo de début de la réservation: "); this.dateDebut.afficherDate(this.dateDebut);
-        System.out.print("\nDatePoo de fin de la réservation: "); this.dateDebut.afficherDate(this.dateDebut);
-        System.out.println("\nLe total à payer : "+this.total+" DA\n");
-    }
-
-    public void détails(){
-        System.out.println("\nAffichage des infos de la réservation :");
-        System.out.println("Le nom comlet : "+this.client.nom+" "+this.client.prenom);
-        System.out.println("Le numéro de téléphone : "+this.client.telephone);
-        System.out.println("Vos chambre réservée : ");
-        int i=0;
-        do{
-            System.out.print(this.chambre.get(i).numéroChambre+" est de type "+this.chambre.get(i).type+"      ");
-            i++;
-        }while(i<this.chambre.size());
-        System.out.print("DatePoo de début de la réservation: "); this.dateDebut.afficherDate(this.dateDebut);
-        System.out.print("\nDatePoo de fin de la réservation: "); this.dateDebut.afficherDate(this.dateDebut);
-        System.out.println("\nLe total : "+this.total+" DA\n");
-    }
 }

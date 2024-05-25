@@ -14,7 +14,7 @@ class Client_Signup extends JFrame {
         setLocationRelativeTo(null);
 
 
-        ImageIcon backgroundImage = new ImageIcon("image456.png");
+        ImageIcon backgroundImage = new ImageIcon("GUI/image456.png");
         JLabel backgroundLabel = new JLabel(backgroundImage);
         backgroundLabel.setLayout(new GridBagLayout());
 
@@ -62,7 +62,7 @@ class Client_Signup extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.WEST;
-        JLabel nomLabel = new JLabel("Full name :");
+        JLabel nomLabel = new JLabel("Nom complet :");
         nomLabel.setForeground(Color.WHITE);
         mainPanel.add(nomLabel, gbc);
 
@@ -73,7 +73,7 @@ class Client_Signup extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.WEST;
-        JLabel prénomLabel = new JLabel("Nationnality :");
+        JLabel prénomLabel = new JLabel("Nationnalité :");
         prénomLabel.setForeground(Color.WHITE);
         mainPanel.add(prénomLabel, gbc);
 
@@ -98,7 +98,7 @@ class Client_Signup extends JFrame {
 
         gbc.gridx = 0;
         gbc.gridy = 5;
-        JLabel phoneLabel = new JLabel("Phone:");
+        JLabel phoneLabel = new JLabel("numero:");
         phoneLabel.setForeground(Color.WHITE);
         mainPanel.add(phoneLabel, gbc);
 
@@ -109,7 +109,7 @@ class Client_Signup extends JFrame {
         // Password field
         gbc.gridx = 0;
         gbc.gridy = 6;
-        JLabel passwordLabel = new JLabel("Password :");
+        JLabel passwordLabel = new JLabel("mot de passe :");
         passwordLabel.setForeground(Color.WHITE);
         mainPanel.add(passwordLabel, gbc);
 
@@ -122,14 +122,14 @@ class Client_Signup extends JFrame {
         gbc.gridy = 7;
         gbc.gridwidth = 1; // Set gridwidth to 1 for each button
         gbc.anchor = GridBagConstraints.EAST; // Align to the right
-        JButton submitButton = new JButton("Submit");
+        JButton submitButton = new JButton("confirmer");
         submitButton.setBackground(new Color(89, 116, 141)); // Deep blue color
         submitButton.setForeground(Color.WHITE);
         submitButton.setFont(new Font("Arial", Font.BOLD, 14)); // Larger and bold font
-        submitButton.setPreferredSize(new Dimension(100, 30)); // Smaller size
+        submitButton.setPreferredSize(new Dimension(120, 30)); // Smaller size
         submitButton.setFocusPainted(false); // Remove focus border
         int borderRadius = 10; // Adjust the radius as needed
-        submitButton.setBorder(new RoundedBorder(borderRadius));
+
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -161,4 +161,3 @@ class Client_Signup extends JFrame {
         });
     }
 }
-

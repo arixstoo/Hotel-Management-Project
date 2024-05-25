@@ -13,10 +13,12 @@ import com.mongodb.client.result.DeleteResult;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import java.text.ParseException;
 import java.util.*;
 
 public class MongoFunctions {
-    /* connexion a la base de donnees */ public static MongoCollection<Document> mongconnect(String dbName, String collName) {
+    //done
+    public static MongoCollection<Document> mongconnect(String dbName, String collName) {
         String uri = "mongodb+srv://nassimhessas60:nassimhessas60@cluster0.3ye673x.mongodb.net/";
         MongoClientURI clientURI = new MongoClientURI(uri);
         MongoClient mongoClient = new MongoClient(clientURI);
@@ -25,30 +27,19 @@ public class MongoFunctions {
         MongoCollection collection = mongoDatabase.getCollection(collName);
         return collection;
     }
-    /*inserer un document */ public static void insertDoc(MongoCollection collection, Document document) {
+    //done
+    public static void insertDoc(MongoCollection collection, Document document) {
         collection.insertOne(document);
-        System.out.println("Document inseré avec succés!");
+        System.out.println("Document inserted successfully!");
     }
-    /*lister les documents d'une collection */ public static void ListDocs(MongoCollection collection) {
-        long compteur = collection.countDocuments();
-        if (compteur != 0) {
-            // Lister les documents
-            System.out.println(collection +":");
-            for (Object document : collection.find()) {
-                System.out.println(document.toString());
-            }
-            System.out.println("\nNombre de documents dans la collection: " + collection.getNamespace() + " : " + compteur);
-        } else {
-            System.out.println("\nLa collection est vide");
-        }
-    }
-    /*supprimer un document */ public static void suppDoc(MongoCollection collection, String code, Object value) {
+
+    public static void suppDoc(MongoCollection collection, String code, Object value) {
         Document search = new Document();
         search.put(code, value);
 
         // Supprimer un ou plusieurs documents
-        DeleteResult deleteResult = collection.deleteMany(search);
-        long deletedCount = deleteResult.getDeletedCount();
+        DeleteResult supp = collection.deleteMany(search);
+        long deletedCount = supp.getDeletedCount();
 
         if (deletedCount > 0) {
             if (deletedCount == 1) {
@@ -60,8 +51,45 @@ public class MongoFunctions {
             System.out.println("Aucun document trouvé correspondant à la condition.");
         }
     }
-    /*modifier un document */ public static void updateDoc(MongoCollection collectionName, String field_recherche, Object valeur_or, String field_modif, Object valeur_mod) {
+    //done
+    public static void updateDoc(MongoCollection collectionName, String field_recherche, Object valeur_or, String field_modif, Object valeur_mod) {
         collectionName.updateOne(Filters.eq(field_recherche, valeur_or), Updates.set(field_modif, valeur_mod));
-        System.out.println("document modifié avec succés");
+        System.out.println("document modifié successfully");
     }
+    //done
+    public static void ListDocs(MongoCollection collection) {
+        long compteur = collection.countDocuments();
+        if (compteur != 0) {
+            // Retrieve and print all documents
+            System.out.println("\nRetrieving all documents:");
+            for (Object document : collection.find()) {
+                System.out.println(document.toString());
+            }
+            System.out.println("\nNombre de documents dans la collection: " + collection.getNamespace() + " : " + compteur);
+        } else {
+            System.out.println("\nLa collection est vide");
+        }
+    }
+    //done
+    public static void updateClient(Object valeur_rech, String field_modif, Object valeur_mod) {
+        MongoCollection collection = MongoFunctions.mongconnect("TP_Hotel", "Clients");
+
+        // Recherche du document correspondant
+        Document recherche = new Document("UserName", valeur_rech);
+        long cmp = collection.countDocuments(recherche);
+
+        if (cmp > 0) {
+            // Mise à jour du document trouvé
+            collection.updateOne(recherche, Updates.set(field_modif, valeur_mod));
+            System.out.println("Client modifié avec succès");
+        } else {
+            // Aucun document trouvé correspondant à la valeur de recherche
+            System.out.println("Aucun client trouvé avec le nom d'utilisateur  : " + valeur_rech);
+        }
+    }
+
 }
+
+// charger les collections dans les maps
+// insert document -> insert clients reservations chambres
+// modifier reservation chambre

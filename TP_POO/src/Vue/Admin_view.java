@@ -1,4 +1,4 @@
-package GUI;
+package Vue;
 
 import javax.swing.*;
 import java.awt.*;
@@ -68,7 +68,7 @@ class Admin_view extends JFrame {
         buttonsPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
         // Button 1
-        JButton button1 = new JButton("Access reservations");
+        JButton button1 = new JButton("      Accéder reservations   ");
         button1.setBackground(new Color(186, 149, 89));
         button1.setForeground(Color.WHITE);
         button1.setPreferredSize(new Dimension(250, 200)); // Ajuster la taille du bouton
@@ -76,7 +76,7 @@ class Admin_view extends JFrame {
         buttonsPanel.add(Box.createRigidArea(new Dimension(0, 30)));
 
         // Button 2
-        JButton button2 = new JButton("       Modify room       ");
+        JButton button2 = new JButton("        Modifier chambre        ");
         button2.setBackground(new Color(186, 149, 89));
         button2.setForeground(Color.WHITE);
         button2.setPreferredSize(new Dimension(250, 60)); // Ajuster la taille du bouton
@@ -84,7 +84,7 @@ class Admin_view extends JFrame {
         buttonsPanel.add(Box.createRigidArea(new Dimension(0, 30)));
 
         // Button 3
-        JButton button3 = new JButton("          Add room          ");
+        JButton button3 = new JButton("          ajouter chambre        ");
         button3.setBackground(new Color(186, 149, 89));
         button3.setForeground(Color.WHITE);
         button3.setPreferredSize(new Dimension(250, 60)); // Ajuster la taille du bouton
@@ -92,10 +92,10 @@ class Admin_view extends JFrame {
         buttonsPanel.add(Box.createRigidArea(new Dimension(0, 30)));
 
         // Button 4
-        JButton button4 = new JButton("        Delete room       ");
+        JButton button4 = new JButton("        suprimer chambre       ");
         button4.setBackground(new Color(186, 149, 89));
         button4.setForeground(Color.WHITE);
-        button4.setPreferredSize(new Dimension(250, 60)); 
+        button4.setPreferredSize(new Dimension(250, 60));
         buttonsPanel.add(button4);
 
 
@@ -114,4 +114,3 @@ class Admin_view extends JFrame {
         });
     }
 }
-

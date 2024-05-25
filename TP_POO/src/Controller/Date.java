@@ -1,5 +1,9 @@
 package Controller;
 
+import Controller.Exceptions.Exception_text;
+
+import javax.swing.*;
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class Date {
@@ -15,47 +19,122 @@ public class Date {
         this.annee = annee;
     }
 
-    public Date(Date aujourdhui){
-        int année, mois, jour;
-        do{
-            System.out.print("L'année (pas avant "+aujourdhui.annee+") : ");
-            année = sc.nextInt();
-            if(année<aujourdhui.annee){
-                System.out.println("Vous ne pouvez pas entrer une année avant "+aujourdhui.annee);
-            }
-        }while(année<aujourdhui.annee);
+    public static Date Date_Debut(Date aujourdhui) throws Exception_text {
+        String anneeDebut = JOptionPane.showInputDialog("Veuillez entrer la date début de votre réservation : \nL'année :  (pas avant "+Main.aujourdhui.getAnnee()+") : ");
+        int annee_Debut = Integer.parseInt(anneeDebut);
+        if(annee_Debut<Main.aujourdhui.getAnnee()){
+            throw new Exception_text("Vous ne pouvez pas entrer une année avant "+Main.aujourdhui.getAnnee());
+        }
 
-        do{
-            if(année==aujourdhui.annee){
-                System.out.print("Le mois (pas avant "+aujourdhui.mois+"): ");
-            }
-            else{
-                System.out.print("Le mois : ");
-            }
-            mois = sc.nextInt();
-            if(mois<aujourdhui.mois && année==aujourdhui.annee){
-                System.out.println("Vous ne pouvez pas entrer un mois avant "+aujourdhui.mois);
-            }
-            if(mois<1 || mois>12){
-                System.out.println("Le mois doit être entre 1 et 12");
-            }
-        }while((mois<aujourdhui.mois && année==aujourdhui.annee) || (mois<1 || mois>12));
+        String moisDebut;
+        if(annee_Debut==Main.aujourdhui.getAnnee()){
+            moisDebut = JOptionPane.showInputDialog("Veuillez entrer la date début de votre réservation : \nLe mois :  (pas avant "+Main.aujourdhui.getMois()+") : ");
+        }
+        else{
+            moisDebut = JOptionPane.showInputDialog("Veuillez entrer la date début de votre réservation : \nLe mois : ");
+        }
+        int mois_Debut = Integer.parseInt(moisDebut);
+        if(mois_Debut<Main.aujourdhui.getMois() && annee_Debut==Main.aujourdhui.getAnnee()){
+            throw new Exception_text("Vous ne pouvez pas entrer un mois avant "+Main.aujourdhui.getMois());
+        }
+        if(mois_Debut<1 || mois_Debut>12){
+            throw new Exception_text("Le mois doit être entre 1 et 12");
+        }
 
-        do{
-            System.out.print("Le jour : ");
-            jour = sc.nextInt();
-            if(jour<1 || jour>nombreJoursDansMois(mois, année)){
-                System.out.println("Le jour doit être entre 1 et "+nombreJoursDansMois(mois, année));
-            }
-            else if(jour<aujourdhui.jour && (mois==aujourdhui.mois && année==aujourdhui.annee)){
-                int temp = aujourdhui.jour+1;
-                System.out.println("Le jour doit être entre "+temp+" et "+nombreJoursDansMois(mois, année));
-            }
-        }while(jour<1  || jour>nombreJoursDansMois(mois, année) || (jour<aujourdhui.jour && (mois==aujourdhui.mois && année==aujourdhui.annee)));
-        
-        this.annee=année;
-        this.mois=mois;
-        this.jour=jour;
+        String jourDebut;
+        if(annee_Debut==Main.aujourdhui.getAnnee() && mois_Debut== Main.aujourdhui.getMois()){
+            jourDebut = JOptionPane.showInputDialog("Veuillez entrer la date début de votre réservation : \nLe jour :  (pas avant "+Main.aujourdhui.getJour()+") : ");
+        }
+        else{
+            jourDebut = JOptionPane.showInputDialog("Veuillez entrer la date début de votre réservation : \nLe jour : ");
+        }
+        int jour_Debut = Integer.parseInt(jourDebut);
+        if(jour_Debut<1 || jour_Debut>Controller.Date.nombreJoursDansMois(mois_Debut, annee_Debut)){
+            throw new Exception_text("Le jour doit être entre 1 et "+Controller.Date.nombreJoursDansMois(mois_Debut, annee_Debut));
+        }
+        else if(jour_Debut<Main.aujourdhui.getJour() && (mois_Debut==Main.aujourdhui.getMois() && annee_Debut==Main.aujourdhui.getAnnee())){
+            int temp = Main.aujourdhui.getJour()+1;
+            throw new Exception_text("Le jour doit être entre "+temp+" et "+Controller.Date.nombreJoursDansMois(mois_Debut, annee_Debut));
+        }
+        return new Date(jour_Debut,mois_Debut,annee_Debut);
+    }
+
+    public static Date Date_Fin(Date aujourdhui) throws Exception_text {
+        String anneeDebut = JOptionPane.showInputDialog("Veuillez entrer la date fin de votre réservation : \nL'année :  (pas avant "+aujourdhui.getAnnee()+") : ");
+        int annee_Debut = Integer.parseInt(anneeDebut);
+        if(annee_Debut<aujourdhui.getAnnee()){
+            throw new Exception_text("Vous ne pouvez pas entrer une année avant "+aujourdhui.getAnnee());
+        }
+
+        String moisDebut;
+        if(annee_Debut==aujourdhui.getAnnee()){
+            moisDebut = JOptionPane.showInputDialog("Veuillez entrer la date fin de votre réservation : \nLe mois :  (pas avant "+aujourdhui.getMois()+") : ");
+        }
+        else{
+            moisDebut = JOptionPane.showInputDialog("Veuillez entrer la date fin de votre réservation : \nLe mois : ");
+        }
+        int mois_Debut = Integer.parseInt(moisDebut);
+        if(mois_Debut<aujourdhui.getMois() && annee_Debut==aujourdhui.getAnnee()){
+            throw new Exception_text("Vous ne pouvez pas entrer un mois avant "+aujourdhui.getMois());
+        }
+        if(mois_Debut<1 || mois_Debut>12){
+            throw new Exception_text("Le mois doit être entre 1 et 12");
+        }
+
+        String jourDebut;
+        if(annee_Debut==aujourdhui.getAnnee() && mois_Debut== aujourdhui.getMois()){
+            jourDebut = JOptionPane.showInputDialog("Veuillez entrer la date fin de votre réservation : \nLe jour :  (pas avant "+aujourdhui.getJour()+") : ");
+        }
+        else{
+            jourDebut = JOptionPane.showInputDialog("Veuillez entrer la date fin de votre réservation : \nLe jour : ");
+        }
+        int jour_Debut = Integer.parseInt(jourDebut);
+        if(jour_Debut<1 || jour_Debut>Controller.Date.nombreJoursDansMois(mois_Debut, annee_Debut)){
+            throw new Exception_text("Le jour doit être entre 1 et "+Controller.Date.nombreJoursDansMois(mois_Debut, annee_Debut));
+        }
+        else if(jour_Debut<aujourdhui.getJour() && (mois_Debut==aujourdhui.getMois() && annee_Debut==aujourdhui.getAnnee())){
+            int temp = aujourdhui.getJour()+1;
+            throw new Exception_text("Le jour doit être entre "+temp+" et "+Controller.Date.nombreJoursDansMois(mois_Debut, annee_Debut));
+        }
+        return new Date(jour_Debut,mois_Debut,annee_Debut);
+    }
+
+    public static void dateDebut_valide(Date dateDebut, Date aujourdhui) throws Exception_text {
+        if(dateDebut.getAnnee()<aujourdhui.getAnnee()){
+            throw new Exception_text("Vous ne pouvez pas entrer une année avant "+aujourdhui.getAnnee()+" dans le Check-in de votre réservation.");
+        }
+        if(dateDebut.getMois()<aujourdhui.getMois() && dateDebut.getAnnee()==aujourdhui.getAnnee()){
+            throw new Exception_text("Vous ne pouvez pas entrer un mois avant "+aujourdhui.getMois()+" dans le Check-in de votre réservation.");
+        }
+        if(dateDebut.getMois()<1 || dateDebut.getMois()>12){
+            throw new Exception_text("Le mois doit être entre 1 et 12 dans le Check-in de votre réservation.");
+        }
+        if(dateDebut.getJour()<1 || dateDebut.getJour()>Controller.Date.nombreJoursDansMois(dateDebut.getMois(), dateDebut.getAnnee())){
+            throw new Exception_text("Le jour doit être entre 1 et "+Controller.Date.nombreJoursDansMois(dateDebut.getMois(), dateDebut.getAnnee())+" dans le Check-in de votre réservation.");
+        }
+        else if(dateDebut.getJour()<Main.aujourdhui.getJour() && (dateDebut.getMois()==Main.aujourdhui.getMois() && dateDebut.getAnnee()==aujourdhui.getAnnee())){
+            int temp = aujourdhui.getJour()+1;
+            throw new Exception_text("Le jour doit être entre "+temp+" et "+Controller.Date.nombreJoursDansMois(dateDebut.getMois(), dateDebut.getAnnee())+" dans le Check-in de votre réservation.");
+        }
+    }
+
+    public static void dateFin_valide(Date dateDebut, Date aujourdhui) throws Exception_text {
+        if(dateDebut.getAnnee()<aujourdhui.getAnnee()){
+            throw new Exception_text("Vous ne pouvez pas entrer une année avant "+aujourdhui.getAnnee()+" dans le Check-out de votre réservation.");
+        }
+        if(dateDebut.getMois()<aujourdhui.getMois() && dateDebut.getAnnee()==aujourdhui.getAnnee()){
+            throw new Exception_text("Vous ne pouvez pas entrer un mois avant "+aujourdhui.getMois()+" dans le Check-out de votre réservation.");
+        }
+        if(dateDebut.getMois()<1 || dateDebut.getMois()>12){
+            throw new Exception_text("Le mois doit être entre 1 et 12 dans le Check-out de votre réservation.");
+        }
+        if(dateDebut.getJour()<1 || dateDebut.getJour()>Controller.Date.nombreJoursDansMois(dateDebut.getMois(), dateDebut.getAnnee())){
+            throw new Exception_text("Le jour doit être entre 1 et "+Controller.Date.nombreJoursDansMois(dateDebut.getMois(), dateDebut.getAnnee())+" dans le Check-out de votre réservation.");
+        }
+        else if(dateDebut.getJour()<aujourdhui.getJour() && (dateDebut.getMois()==aujourdhui.getMois() && dateDebut.getAnnee()==aujourdhui.getAnnee())){
+            int temp = aujourdhui.getJour()+1;
+            throw new Exception_text("Le jour doit être entre "+temp+" et "+Controller.Date.nombreJoursDansMois(dateDebut.getMois(), dateDebut.getAnnee())+" dans le Check-out de votre réservation.");
+        }
     }
 
     public int getAnnee() {return annee;}
@@ -106,7 +185,7 @@ public class Date {
     }
 
     // Fonction pour obtenir le nombre de jours dans un mois
-    private static int nombreJoursDansMois(int mois, int annee) {
+    public static int nombreJoursDansMois(int mois, int annee) {
         switch (mois) {
             case 1:
             case 3:
@@ -169,11 +248,11 @@ public class Date {
 
     // Fonction pour convertir la date en chaîne de caractères
     public static String dateVersString(Date datee) {
-        return datee.jour + "/" + datee.mois + "/" + datee.annee;
+        return datee.getJour() + "/" + datee.getMois() + "/" + datee.getAnnee();
     }
 
     // Fonction pour convertir une chaîne de caractères en date
-    public static Date stringVersDate(String dateEnString) /*throws ParseException*/ {
+    public static Date stringVersDate(String dateEnString) {
         String[] parties = dateEnString.split("/");
         int jour = Integer.parseInt(parties[0]);
         int mois = Integer.parseInt(parties[1]);

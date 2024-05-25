@@ -1,4 +1,4 @@
-package GUI;
+package Vue;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +14,7 @@ class Client_Signup extends JFrame {
         setLocationRelativeTo(null);
 
 
-        ImageIcon backgroundImage = new ImageIcon("image22.png");
+        ImageIcon backgroundImage = new ImageIcon("image456.png");
         JLabel backgroundLabel = new JLabel(backgroundImage);
         backgroundLabel.setLayout(new GridBagLayout());
 

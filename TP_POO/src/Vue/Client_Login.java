@@ -1,20 +1,25 @@
 package Vue;
 
+import Controller.Exceptions.Exception_text;
+import Controller.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class Client_Login extends JFrame {
+public class Client_Login extends JFrame {
     public Client_Login() {
-
+        Main.charger();
         setTitle("Client Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Image img = tk.getImage("src/Vue/IconHotel.png");
+        setIconImage(img);
         setSize(700, 500);
         setLocationRelativeTo(null);
 
-
-        ImageIcon backgroundImage = new ImageIcon("image456.png");
+        ImageIcon backgroundImage = new ImageIcon("src/Vue/image22.png");
         JLabel backgroundLabel = new JLabel(backgroundImage);
         backgroundLabel.setLayout(new GridBagLayout());
 
@@ -26,129 +31,128 @@ class Client_Login extends JFrame {
                 Graphics2D g2d = (Graphics2D) g.create();
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 g2d.setColor(new Color(119, 132, 143, 180)); // Translucent blue
-                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 10, 10); // More rounded corners
+                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 10, 10);
                 g2d.dispose();
             }
         };
         mainPanel.setLayout(new GridBagLayout());
-        mainPanel.setPreferredSize(new Dimension(300, 150));
-
-
+        mainPanel.setPreferredSize(new Dimension(550, 150));
         mainPanel.setOpaque(false);
-        mainPanel.setLayout(new GridBagLayout());
-        mainPanel.setPreferredSize(new Dimension(360, 170));
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
 
-
-
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.WEST;
-        JLabel usernameLabel = new JLabel("Email:");
+        gbc.anchor = GridBagConstraints.CENTER;
+        JLabel usernameLabel = new JLabel("Nom d'utilisateur:");
         usernameLabel.setForeground(Color.WHITE);
         mainPanel.add(usernameLabel, gbc);
-
         gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
         JTextField usernameField = new JTextField(20);
         mainPanel.add(usernameField, gbc);
 
-
         gbc.gridx = 0;
         gbc.gridy = 1;
-        JLabel passwordLabel = new JLabel("Mot de passe :");
+        gbc.anchor = GridBagConstraints.CENTER;
+        JLabel passwordLabel = new JLabel("Mot de passe:");
         passwordLabel.setForeground(Color.WHITE);
         mainPanel.add(passwordLabel, gbc);
 
         gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
         JPasswordField passwordField = new JPasswordField(20);
         mainPanel.add(passwordField, gbc);
 
-        // Buttons panel
-        JPanel buttonsPanel = new JPanel();
-        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
-        buttonsPanel.setOpaque(false);
+        // sign up button
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 1; // Set gridwidth to 1 for each button
+        gbc.anchor = GridBagConstraints.EAST; // Align to the right
+        JButton submitButton = new JButton("S'inscrire");
+        submitButton.setBackground(new Color(89, 116, 141));; // Deep blue color
+        submitButton.setForeground(Color.WHITE);
+        submitButton.setFont(new Font("Arial", Font.BOLD, 14)); // Larger and bold font
+        submitButton.setPreferredSize(new Dimension(100, 30)); // Smaller size
+        submitButton.setFocusPainted(false); // Remove focus border
+        int borderRadius = 10; // Adjust the radius as needed
+        submitButton.setBorder(new RoundedBorder(borderRadius));
 
-        Dimension buttonSize = new Dimension(100, 30);
-
-        // Sign up button
-        JButton signUpButton = new JButton("admin");
-        signUpButton.setBackground(new Color(89, 116, 141));
-        signUpButton.setForeground(Color.WHITE);
-        signUpButton.setFont(new Font("Arial", Font.BOLD, 14));
-        signUpButton.setPreferredSize(buttonSize);
-        signUpButton.setMaximumSize(buttonSize);
-        signUpButton.setMinimumSize(buttonSize);
-        signUpButton.setFocusPainted(false);
-        signUpButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-        signUpButton.addActionListener(new ActionListener() {
+        submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Handle sign up button click
+                dispose();
+                Client_Signup secondWindow = new Client_Signup();
+                secondWindow.setVisible(true);
             }
         });
-        buttonsPanel.add(signUpButton);
-        buttonsPanel.add(Box.createRigidArea(new Dimension(10, 0))); // Add space between buttons
+        mainPanel.add(submitButton, gbc);
 
         // Log In button
-        JButton loginButton = new JButton("s'inscire");
-        loginButton.setBackground(new Color(89, 116, 141));
+        gbc.gridx = 2;
+        JButton loginButton = new JButton("Se connecter");
+        loginButton.setBackground(new Color(89, 116, 141)); // Deep blue color
         loginButton.setForeground(Color.WHITE);
-        loginButton.setFont(new Font("Arial", Font.BOLD, 14));
-        loginButton.setPreferredSize(buttonSize);
-        loginButton.setMaximumSize(buttonSize);
-        loginButton.setMinimumSize(buttonSize);
-        loginButton.setFocusPainted(false);
-        loginButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+        loginButton.setFont(new Font("Arial", Font.BOLD, 14)); // Larger and bold font
+        loginButton.setPreferredSize(new Dimension(110, 30)); // Smaller size
+        loginButton.setFocusPainted(false); // Remove focus border
+        int borderRadiuss = 10;
+        loginButton.setBorder(new RoundedBorder(borderRadiuss));
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Handle log in button click
+                try {
+                    // Vérifier si le mot de passe respecte les critères
+                    Boolean validé = Controller.Client.Login(usernameField.getText(), passwordField.getText());
+                    if(validé){
+                        JOptionPane.showMessageDialog(null, "Accès réussi", "Accès réussi", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    dispose();
+                    Client_view secondWindow = new Client_view(usernameField.getText());
+                    secondWindow.setVisible(true);
+                } catch (Exception_text ex) {
+                    // Afficher un message d'erreur si le mot de passe est invalide
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+                } catch (NullPointerException ex){
+                    JOptionPane.showMessageDialog(null, "Vous devez entrer quelque chose !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
-        buttonsPanel.add(loginButton);
-        buttonsPanel.add(Box.createRigidArea(new Dimension(10, 0))); // Add space between buttons
+        mainPanel.add(loginButton, gbc);
 
-        // Reset button (example third button)
-        JButton resetButton = new JButton("connecter");
-        resetButton.setBackground(new Color(89, 116, 141));
-        resetButton.setForeground(Color.WHITE);
-        resetButton.setFont(new Font("Arial", Font.BOLD, 14));
-        resetButton.setPreferredSize(buttonSize);
-        resetButton.setMaximumSize(buttonSize);
-        resetButton.setMinimumSize(buttonSize);
-        resetButton.setFocusPainted(false);
-        resetButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-        resetButton.addActionListener(new ActionListener() {
+        //Admin button
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        gbc.gridwidth = 1; // Set gridwidth to 1 for each button
+        gbc.anchor = GridBagConstraints.CENTER;
+        JButton adminButton = new JButton("Admin");
+        adminButton.setBackground(new Color(89, 116, 141));; // Deep blue color
+        adminButton.setForeground(Color.WHITE);
+        adminButton.setFont(new Font("Arial", Font.BOLD, 14)); // Larger and bold font
+        adminButton.setPreferredSize(new Dimension(70, 30)); // Smaller size
+        adminButton.setFocusPainted(false); // Remove focus border
+        borderRadius = 10; // Adjust the radius as needed
+        adminButton.setBorder(new RoundedBorder(borderRadius));
+        adminButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Handle reset button click
+                if(JOptionPane.showInputDialog("Code : ").equals("2024")){
+                    dispose();
+                    Admin_Login secondWindow = new Admin_Login();
+                    secondWindow.setVisible(true);
+                } else{
+                    JOptionPane.showMessageDialog(null, "Vous n'êtes pas un admin !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
-        buttonsPanel.add(resetButton);
-
-        // Add buttons panel to main panel
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.gridwidth = 2;
-        gbc.anchor = GridBagConstraints.CENTER;
-        mainPanel.add(buttonsPanel, gbc);
+        mainPanel.add(adminButton, gbc);
 
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.CENTER;
-        backgroundLabel.add(mainPanel, gbc);
         add(backgroundLabel, BorderLayout.CENTER);
-    }
-
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new Client_Login().setVisible(true);
-            }
-        });
+        backgroundLabel.add(mainPanel, gbc);
     }
 }

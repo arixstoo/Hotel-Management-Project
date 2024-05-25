@@ -1,4 +1,4 @@
-package GUI;
+package Vue;
 
 import javax.swing.*;
 import java.awt.*;
@@ -49,8 +49,8 @@ class ClientView extends JFrame {
         // Space between buttons
         buttonsPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
-        // Button 1
-        JButton button1 = new JButton("     Make a Reservation    ");
+         // Button 1
+        JButton button1 = new JButton("     Faire une Reservation    ");
         button1.setBackground(new Color(100, 100, 100)); // Dark grey background
         button1.setForeground(Color.WHITE);
         button1.setPreferredSize(new Dimension(250, 60)); // Adjust button size
@@ -59,7 +59,7 @@ class ClientView extends JFrame {
         buttonsPanel.add(Box.createRigidArea(new Dimension(0, 30)));
 
         // Button 2 (Edit Reservation)
-        JButton button2 = new JButton("   Edit your Reservation   ");
+        JButton button2 = new JButton("   Modifier ta Reservation   ");
         button2.setBackground(new Color(100, 100, 100)); // Dark grey background
         button2.setForeground(Color.WHITE);
         button2.setPreferredSize(new Dimension(250, 60)); // Adjust button size
@@ -68,12 +68,11 @@ class ClientView extends JFrame {
         buttonsPanel.add(Box.createRigidArea(new Dimension(0, 30)));
 
         // Button 3 (Check-in / Check-out)
-        JButton button3 = new JButton(" Delete your Reservation ");
+        JButton button3 = new JButton("    Effacer ta Reservation    ");
         button3.setBackground(new Color(100, 100, 100)); // Dark grey background
         button3.setForeground(Color.WHITE);
         button3.setPreferredSize(new Dimension(250, 60)); // Adjust button size
         buttonsPanel.add(button3);
-
         mainPanel.add(buttonsPanel);
 
         backgroundLabel.add(mainPanel, gbc);

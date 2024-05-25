@@ -1,19 +1,16 @@
-import Code.*;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoClients;
+package Model;
+
+import Controller.*;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.Updates;
-import com.mongodb.client.result.DeleteResult;
 import org.bson.Document;
-import org.bson.types.ObjectId;
-import java.util.*;
+
+import java.awt.*;
+import java.text.ParseException;
+import java.util.List;
+import java.util.Map;
 
 public class java_mongo {
-     public static void Chambretojava(Document document, Map<Integer, Chambre> chambresMap) {
+    public static void Chambretojava(Document document, Map<Integer, Chambre> chambresMap) {
         MongoCollection collection = MongoFunctions.mongconnect("TP_Hotel","Chambres");
         if (document != null) {
             int numChambre = document.getInteger("NumChambre");
@@ -39,7 +36,8 @@ public class java_mongo {
             System.out.println("Document null");
         }
     }
-     public static void clienttojava (Document document, Map<String, Client> clientsMap) {
+
+    public static void clienttojava (Document document, Map<String, Client> clientsMap) {
         if (document != null) {
             String nom = document.getString("Nom");
             String prenom = document.getString("Prenom");
@@ -47,8 +45,9 @@ public class java_mongo {
             String telephone = document.getString("Telephone");
             String username = document.getString("UserName");
             String mdp = document.getString("MotDePasse");
+            Boolean réservation_rejetée = document.getBoolean("réservation_rejetée");
 
-            Client client = new Client(nom,prenom,email,telephone,username,mdp);
+            Client client = new Client(nom,prenom,email,telephone,username,mdp,réservation_rejetée);
             clientsMap.put(username, client);
 
             System.out.println("Client ajoutée à la Map: " + username);
@@ -56,7 +55,8 @@ public class java_mongo {
             System.out.println("Document null");
         }
     }
-     public static void adminttojava (Document document, Map<String, Admin> adminsMap) {
+
+    public static void admintojava (Document document, Map<String, Admin> adminsMap) {
         if (document != null) {
             String nom = document.getString("Nom");
             String prenom = document.getString("Prenom");
@@ -73,21 +73,21 @@ public class java_mongo {
             System.out.println("Document null");
         }
     }
-     public static void reservationtojava(Document document, Map<String, Reservation> reservationMap) throws ParseException {
-        if (document != null) {
 
+    public static void reservationtojava(Document document, Map<String, Reservation> reservationMap) {
+        if (document != null) {
             String username = document.getString("username");
             List<Integer> reservedRooms = document.getList("reservedRooms", Integer.class);
             String startDate = document.getString("startDate");
             String endDate = document.getString("endDate");
             double totalPrice = document.getDouble("totalPrice");
-            System.out.println(startDate );
-
-            Reservation reservation = new Reservation(username,reservedRooms,MongoFunctions.stringVersDate(startDate), MongoFunctions.stringVersDate(endDate), totalPrice);
+            Boolean réservation_confirmée = document.getBoolean("réservation_confirmée");
+            Reservation reservation = new Reservation(username,reservedRooms,Controller.Date.stringVersDate(startDate), Controller.Date.stringVersDate(endDate), totalPrice, réservation_confirmée);
             reservationMap.put(username, reservation);
             System.out.println("Reservation ajoutée à la Map: " + username);
         } else {
             System.out.println("Document null");
         }
     }
+
 }

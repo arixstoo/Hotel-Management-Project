@@ -1,16 +1,10 @@
-import Code.*;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoClients;
+package Model;
+
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.DeleteResult;
 import org.bson.Document;
-import org.bson.types.ObjectId;
-import java.util.*;
+
+import java.util.List;
 
 public class ReservationOper {
 
@@ -36,16 +30,18 @@ public class ReservationOper {
         reservationDocument.put("totalPrice", prix);
 
         //inserer l'etat de reservation
-        reservationDocument.put("réservation_confirmée",null);
+        reservationDocument.put("réservation_confirmée",false);
 
         // Inserer le document de la reservation dans la collection "Reservations"
         MongoFunctions.insertDoc(collection,reservationDocument);
 
     }
-   /* supprimer une reservation */ public static void suppReservation(Object value) {
+
+    /* supprimer une reservation */
+    public static void suppReservation(String value) {
         MongoCollection collection = MongoFunctions.mongconnect("TP_Hotel","Reservations");
         Document search = new Document();
-        search.put("UserName", value);
+        search.put("username", value);
 
         DeleteResult deleteResult = collection.deleteMany(search);
         long deletedCount = deleteResult.getDeletedCount();

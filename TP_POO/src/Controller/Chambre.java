@@ -29,7 +29,4 @@ public class Chambre {
 
     public TypeChambre getType(){return this.type;}
 
-    public void afficherChambre(){
-        System.out.println("La chambre "+this.numéroChambre+" de type "+this.type+" est libre et coûte "+this.prix+" DA pour la nuit.");
-    }
 }

@@ -94,7 +94,7 @@ class reservation extends JFrame {
         setContentPane(mainPanel);
 
         // Create the background panel
-        ImageIcon backgroundImage = new ImageIcon("image9.png");
+        ImageIcon backgroundImage = new ImageIcon("POUT.png");
         JLabel backgroundLabel = new JLabel(backgroundImage);
         backgroundLabel.setLayout(new GridBagLayout());
 

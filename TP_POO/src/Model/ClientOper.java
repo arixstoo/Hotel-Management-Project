@@ -1,22 +1,15 @@
-import Code.*;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoClients;
+package Model;
+
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.DeleteResult;
 import org.bson.Document;
-import org.bson.types.ObjectId;
-import java.util.*;
 
 public class ClientOper {
 
-    /* inserer un client */ public static void insertClient(String nom_client, String prenom_client, String e_mail, String telephone, String userName, String motDePasse) {
+    /* inserer un client */
+    public static void insertClient(String nom_client, String prenom_client, String e_mail, String telephone, String userName, String motDePasse) {
 
-        MongoCollection collection = MongoFunctions.mongconnect("TP_Hotel","Clients");
+        MongoCollection collection = MongoFunctions.mongconnect("TP_Hotel", "Clients");
 
         Document document = new Document("Nom", nom_client)
                 .append("Prenom", prenom_client)
@@ -30,9 +23,10 @@ public class ClientOper {
         System.out.println("Client ajouté avec succés");
     }
 
-    /* supprimer un client */ public static void suppClient(Object value) {
+    /* supprimer un client */
+    public static void suppClient(Object value) {
 
-        MongoCollection collection = MongoFunctions.mongconnect("TP_Hotel","Clients");
+        MongoCollection collection = MongoFunctions.mongconnect("TP_Hotel", "Clients");
         Document rec = new Document();
         rec.put("UserName", value);
 
@@ -49,3 +43,4 @@ public class ClientOper {
             System.out.println("Aucun client trouvé.");
         }
     }
+}

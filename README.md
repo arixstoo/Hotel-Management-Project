@@ -48,7 +48,7 @@ Le côté administrateur de l'application offre des fonctionnalités supplément
 
 ## Instructions pour l'Exécution
 ### Cloner le Repository :
-ecrivez sur le bash : git clone https://github.com/username/repository.git
+ecrivez sur le bash : git clone https://github.com/arixstoo/Hotel-Management-Project.git
 
 ### Configurer le Projet :
 Assurez-vous que Java est installé sur votre machine.

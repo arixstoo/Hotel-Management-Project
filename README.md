@@ -2,7 +2,7 @@
 
 #### Hi there 👋 it's arixstoo again !
 ## Description du Projet
-Le projet est un système de gestion d'hôtel, développé en Java avec une interface utilisateur utilisant Swing et une base dennées utilisant MongoDB. L'application permet aux utilisateurs de faire des réservations de chambres, d'afficher les détails des chambres disponibles et de gérer les réservations existantes. L'application propose aussi une interface et un contrôle complet pour les admins et les réceptionnistes de l'hôtel. 
+Le projet a été développé en collaboration avec une équipe (les collaborateurs de ce repository). Le projet est un système de gestion d'hôtel, développé en Java avec une interface utilisateur utilisant Swing et une base dennées utilisant MongoDB. L'application permet aux utilisateurs de faire des réservations de chambres, d'afficher les détails des chambres disponibles et de gérer les réservations existantes. L'application propose aussi une interface et un contrôle complet pour les admins et les réceptionnistes de l'hôtel. 
 
 ## Technologies Utilisées
 **- Langage de Programmation** : **Java**

@@ -1,64 +1,61 @@
 # **Hotel Management Project**
 
 #### Hi there 👋 it's arixstoo again !
-## Description du Projet
-Le projet a été développé en collaboration avec une équipe (les collaborateurs de ce repository). Le projet est un système de gestion d'hôtel, développé en Java avec une interface utilisateur utilisant Swing et une base dennées utilisant MongoDB. L'application permet aux utilisateurs de faire des réservations de chambres, d'afficher les détails des chambres disponibles et de gérer les réservations existantes. L'application propose aussi une interface et un contrôle complet pour les admins et les réceptionnistes de l'hôtel. 
+## Project Description
+The project was developed in collaboration with a team (the collaborators of this repository). The project is a hotel management system, developed in Java with a user interface using Swing and a database using MongoDB. The application allows users to make room reservations, display details of available rooms, and manage existing reservations. The application also provides a complete interface and control for the hotel admins and receptionists.
 
-## Technologies Utilisées
-**- Langage de Programmation** : **Java**
+## Technologies Used
+**- Programming Language** : **Java**
 
-**- Bibliothèque d'Interface Graphique** : **Swing**
+**- GUI Library** : **Swing**
 
-**- Gestion de la Base de Données** : **MongoDB** (via le driver Java MongoDB)
+**- Database Management** : **MongoDB** (via the Java MongoDB driver)
 
-**- Collections et Maps** : Avant d'intégrer MongoDB, les données étaient stockées en utilisant des **Map** en Java pour organiser et manipuler les informations.
+**- Collections and Maps** : Before integrating MongoDB, the data was stored using **Maps** in Java to organize and manipulate information.
 
-**- MVC (Model-View-Controller)** : Architecture utilisée pour **organiser** le code de l'application de manière **modulaire** et maintenable.
+**- MVC (Model-View-Controller)** : Architecture used to **organize** the application's code in a **modular** and maintainable way.
 
+## Project Structure: MVC Architecture (Model-View-Controller)
+The **MVC** architecture divides the application into three main components:
 
-## Structure du Projet : Architecture MVC (Model-View-Controller)
-L'architecture **MVC** divise l'application en trois composants principaux :
+### **Model**:
+Represents the **data** of the application. In this project, it includes classes like `Chambre`, **Client**, and `Réservation` that interact with **MongoDB** to manage data. These classes centralize the manipulation and validation of data.
 
-### **Model (Modèle)** :
-Représente les **données** de l'application. Dans ce projet, il inclut des classes comme Chambre, **Client**, et Réservation qui interagissent avec **MongoDB** pour gérer les données. Ces classes centralisent la manipulation et la validation des données.
+### **View**:
+Handles the **user interface** of the application. It consists of Swing windows and panels, such as in the `reservation` class, allowing users to **select** rooms and **enter** dates.
 
-### **View (Vue)** :
-Gère **l'interface utilisateur** de l'application. Elle est constituée des fenêtres et panneaux **Swing**, comme dans la classe reservation, permettant aux utilisateurs de **sélectionner** des chambres et de **saisir** des dates.
+### **Controller**:
+Coordinates the **interactions** between the model and the view. It captures user actions **(button clicks)** and updates the model accordingly. For example, in the `reservation` class, the **"continuer"** button triggers model updates and displays error messages if necessary.
 
-### **Controller (Contrôleur)** :
-Coordonne **les interactions** entre le modèle et la vue. Il capte les actions des utilisateurs **(clics de boutons)** et met à jour le modèle en conséquence. Par exemple, dans la classe reservation, le bouton **"continuer"** déclenche des mises à jour du modèle et affiche des messages d'erreur si nécessaire.
+## Key Features
+**Make Reservations**: Allows online reservations by **selecting** available rooms and providing check-in and check-out **dates**.
 
+**Room Modification**: Available rooms are displayed with **their characteristics**, such as type and price. Users can select desired rooms for **their reservation**.
 
-## Fonctionnalités Clés
-**Effectuer des Réservations** : Permet de faire des réservations en ligne **en sélectionnant** des chambres disponibles et en fournissant les dates de début et de fin de **séjour**.
+**Date Validation**: The system checks that the entered dates are in the **correct** format and that they are **valid** to avoid input errors.
 
-**Modification des Chambres** : Les chambres disponibles sont affichées avec **leurs caractéristiques**, telles que le type et le prix. Les utilisateurs peuvent sélectionner les chambres souhaitées pour **leur réservation**.
+## Administrative Features
+The admin side of the application offers additional functionalities for managing reservations and rooms:
 
-**Validation des Dates** : Le système vérifie que les dates entrées sont au format **correct** et qu'elles sont **valides** pour éviter les erreurs de saisie.
+**View Reservations**: Administrators can access an interface displaying all **reservations** made, with options to **accept or deny** bookings. Reservations are listed with **relevant details** such as client name, stay dates, and reserved rooms.
 
-## Fonctionnalités Administratives
-Le côté administrateur de l'application offre des fonctionnalités supplémentaires pour la gestion des réservations et des chambres :
+**Room Management**: Administrators can see all **available** rooms and their status (free or occupied). They have the option to update room information, such as **price** and type.
 
-**Visualisation des Réservations** : Les administrateurs peuvent accéder à une interface qui affiche toutes **les réservations** effectuées, avec des options pour **accepter ou refuser** des réservations. Les réservations sont listées avec **les détails** pertinents tels que le nom du client, les dates de séjour, et les chambres réservées.
+**Hotel Management**: Administrators can **modify** details of existing reservations, including adding or **removing** rooms, as well as changing **stay dates**.
 
-**Gestion des Chambres** : Les administrateurs peuvent voir toutes les chambres **disponibles** et **leur état** (libre ou occupée). Ils ont la possibilité de mettre à jour les informations sur les chambres, telles que **le prix** et le type.
+## Instructions for Running
+### Clone the Repository:
+Write in the bash: `git clone https://github.com/arixstoo/Hotel-Management-Project.git`
 
-**Gestion de l'Hôtel** : Les administrateurs peuvent **modifier** les détails des réservations existantes, y compris l'ajout ou **la suppression** de chambres, ainsi que la modification **des dates** de séjour.
+### Configure the Project:
+Ensure Java is installed on your machine.  
+Import the project into your preferred Java IDE.
 
+### Install Dependencies:
+Make sure you have the necessary dependencies for MongoDB (add them to the `pom.xml` file if you're using Maven or `build.gradle` for Gradle).
 
-## Instructions pour l'Exécution
-### Cloner le Repository :
-ecrivez sur le bash : git clone https://github.com/arixstoo/Hotel-Management-Project.git
-
-### Configurer le Projet :
-Assurez-vous que Java est installé sur votre machine.
-Importez le projet dans votre IDE Java préféré.
-
-### Installer les Dépendances :
-Assurez-vous d'avoir les dépendances nécessaires pour MongoDB (ajoutez-les au fichier pom.xml si vous utilisez Maven ou build.gradle pour Gradle).
-
-### Exécuter l'Application :
-Exécutez la classe '/Controller/main' pour démarrer l'application.
+### Run the Application:
+Execute the class `/Controller/main` to start the application.
 
 ## 🧰 Languages and Tools
         
@@ -69,7 +66,6 @@ Exécutez la classe '/Controller/main' pour démarrer l'application.
 <img align="left" alt="IntelliJ" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/intellij/intellij-original.svg" />
 <img align="left" alt="Java" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"/>
 <br />
-
 
 ## 📊 Reach me here:
 

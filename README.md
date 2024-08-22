@@ -45,7 +45,7 @@ The admin side of the application offers additional functionalities for managing
 
 ## Instructions for Running
 ### Clone the Repository:
-Write in the bash: `git clone https://github.com/arixstoo/Hotel-Management-Project.git`
+Write in the bash: `git clone https://github.com/arixstoo/Hotel-Management-Project`
 
 ### Configure the Project:
 Ensure Java is installed on your machine.  
